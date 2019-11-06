@@ -8,6 +8,8 @@ Lists the elements of one column (left), which are not in another (right), acros
 * Ignores case and padding (via `.lower()` and `.strip()`)
 * Single File
 * In-RAM
+* Output is sorted alphabetically
+* Output is de-duplicated
 
 ... and no testing, license or warranty of any kind!
 

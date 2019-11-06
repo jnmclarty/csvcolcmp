@@ -27,7 +27,7 @@ def csv_parser(fname, col, skip, ReaderCls, **kwargs):
         rdr = ReaderCls(f, **kwargs)
         for i, row in enumerate(rdr):
             if i >= skip:
-                contents.append(row[slc])
+                contents.append(row[slc].lower().strip())
     return contents
 
 l_file = csv_parser(args.left, args.l_col, args.l_skip, csv.DictReader, delimiter=',', quotechar='"')
@@ -37,6 +37,8 @@ out = []
 for l in l_file:
     if not(l in r_file):
         out.extend([a])
+
+out = list(set(out))
 out.sort()
 
 for o in out:
