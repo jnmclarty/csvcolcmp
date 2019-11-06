@@ -27,7 +27,11 @@ def csv_parser(fname, col, skip, ReaderCls, **kwargs):
         rdr = ReaderCls(f, **kwargs)
         for i, row in enumerate(rdr):
             if i >= skip:
-                contents.append(row[slc].lower().strip())
+                if isinstance(slc, int):
+                    info = row.values()[slc]
+                else:
+                    info = row[slc]
+                contents.append(info.lower().strip())
     return contents
 
 l_file = csv_parser(args.left, args.l_col, args.l_skip, DictReader, delimiter=',', quotechar='"')
