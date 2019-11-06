@@ -21,7 +21,7 @@ def csv_parser(fname, col, skip, ReaderCls, **kwargs):
     try:
         slc = int(col)
     except:
-        pass
+        slc = col
 
     with open(fname) as f:
         rdr = ReaderCls(f, **kwargs)
@@ -30,13 +30,13 @@ def csv_parser(fname, col, skip, ReaderCls, **kwargs):
                 contents.append(row[slc].lower().strip())
     return contents
 
-l_file = csv_parser(args.left, args.l_col, args.l_skip, csv.DictReader, delimiter=',', quotechar='"')
-left_file = csv_parser(args.right, args.r_col, args.r_skip, csv.DictReader, delimiter=',', quotechar='"')
+l_file = csv_parser(args.left, args.l_col, args.l_skip, DictReader, delimiter=',', quotechar='"')
+r_file = csv_parser(args.right, args.r_col, args.r_skip, DictReader, delimiter=',', quotechar='"')
 
 out = []
-for l in l_file:
-    if not(l in r_file):
-        out.extend([a])
+for cell_value in l_file:
+    if not(cell_value in r_file):
+        out.extend([cell_value])
 
 out = list(set(out))
 out.sort()
