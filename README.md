@@ -16,6 +16,6 @@ Lists the elements of one column (left), which are not in another (right), acros
 # Usage
 
 ```
-wget http://github.com/jnmclarty/csvcolcmp
+wget https://raw.githubusercontent.com/jnmclarty/csvcolcmp/master/main.py
 python main.py left.csv some_col right.csv other_col > left_not_in_right.csv
 ```
